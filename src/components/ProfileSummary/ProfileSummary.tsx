@@ -1,7 +1,8 @@
+"use client";
+
 import { Container, Grid, SimpleGrid, Skeleton, Stack, Text, Image } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import dateFormat from 'dateformat';
-import moment from 'moment';
 import classes from './ProfileSummary.module.css';
 import { Profile } from '@/types';
 
@@ -22,12 +23,8 @@ export default function ProfileSummary({ data, isLoading }: { data?: Profile, is
         return <div>No data available</div>;
     }
 
-    let formattedBirthDate = moment.utc(data.birth).format('MMMM Do, YYYY');
-    if (formattedBirthDate == 'Invalid date') {
-        formattedBirthDate = '';
-    }
-    //const formattedBirthDate = data.birth ? moment.utc(data.birth).format('MMMM Do, YYYY') : null;
-    const formattedDeathDate = data.death ? moment.utc(data.death).format('MMMM Do, YYYY') : null;
+    let formattedBirthDate = data.birth ? dateFormat(new Date(data.birth), 'mmmm dd, yyyy') : '';
+    const formattedDeathDate = data.death ? dateFormat(new Date(data.death), 'mmmm dd, yyyy') : null;
 
     const hasBirth = !!data.birth && data.birth.trim() !== '';
     const hasDeath = !!data.death && data.death.trim() !== '';

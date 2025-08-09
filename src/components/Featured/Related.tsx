@@ -1,13 +1,17 @@
+"use client";
+
 import { Container, Flex, Skeleton, Text, Box } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import EventCard from '@/components/Card/FeaturedCard/FeaturedCard';
 
 import classes from './Featured.module.css';
 import { getRelated } from '@/queries';
 
 const Featured = ({ title, shortUrl }: { title: string; shortUrl: string }) => {
-    const { data, isLoading } = useQuery(['getRelated', { id: shortUrl }], getRelated, {
+    const { data, isLoading } = useQuery({
+        queryKey: ['getRelated', { id: shortUrl }],
+        queryFn: getRelated,
         retry: false,
     });
 

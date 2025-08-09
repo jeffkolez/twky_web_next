@@ -1,21 +1,22 @@
-import { Container, Flex, Group, Skeleton, Space, Stack, Text } from '@mantine/core';
+"use client";
+
+import { Container, Flex, Skeleton, Stack, Text } from '@mantine/core';
 
 import classes from './ProfileContent.module.css';
 import { Profile } from '@/types';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaEdit } from 'react-icons/fa';
 import RichTextViewer from '@/components/RichTextViewer/RichTextViewer';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import ScrollToTop from '@/components/Effects/ScrollToTop';
 import ProfileEmailListSignup from '@/components/Card/Email/ProfileEmailListSignup';
 
-const handleEditClick = async (shortUrl: string, navigate: any) => {
-    navigate('/edit-bio', { state: { shortUrl } });
+const handleEditClick = async (shortUrl: string, router: any) => {
+    router.push('/edit-bio?shortUrl=' + shortUrl);
 };
 
 
 const ProfileContent = ({ data, isLoading }: { data?: Profile, isLoading: boolean }) => {
-    const navigate = useNavigate();
+    const router = useRouter();
     return (
         <Container size="xl" mt="xl" p={{ base: '20px', md: 0 }}>
             <ScrollToTop />
@@ -26,10 +27,9 @@ const ProfileContent = ({ data, isLoading }: { data?: Profile, isLoading: boolea
                             <Text className={classes.sectionTitle}>
                                 bio
                             </Text>
-                            <FontAwesomeIcon 
-                                icon={faEdit} 
+                            <FaEdit 
                                 style={{ fontSize: '24px', cursor: 'pointer' }}
-                                onClick={() => handleEditClick(data.shortUrl, navigate)}
+                                onClick={() => handleEditClick(data.shortUrl, router)}
                             />
                         </Flex>
                         <div className={classes.sectionContent}>
