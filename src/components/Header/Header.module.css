@@ -1,0 +1,125 @@
+.header {
+    height: auto;
+    padding: 21px 20px;
+    background-color: black;
+    width: 100%;
+}
+  
+.inner {
+    display: flex;
+    flex-direction: row;  /* Default to row for desktop */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+  
+.topRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.auto-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 10px;
+}
+  
+.logo img {
+    width: auto;
+}
+  
+.auto {
+    width: 100%;
+}
+  
+.auto input {
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+  
+header .mantine-Container-root {
+    max-width: none;
+    padding: 0;
+}
+  
+.react-icons {
+    padding: 8px 12px;
+}
+  
+.link {
+    display: block;
+    line-height: 1;
+    padding: 8px 12px;
+    border-radius: var(--mantine-radius-sm);
+    color: var(--mantine-color-gray-7);
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 500;
+}
+  
+.link:hover {
+    background-color: var(--mantine-color-gray-0);
+}
+  
+.linkLabel {
+    margin-right: 5px;
+}
+  
+.socialLinks {
+    display: none;
+}
+  
+.burger {
+    display: none;
+    cursor: pointer;
+    z-index: 11;
+}
+  
+@media (max-width: 768px) {
+    .inner {
+        flex-direction: column;
+    }
+  
+    .topRow {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+  
+    .burger {
+        display: block;
+    }
+  
+    .auto-wrapper {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+  
+.mobileMenu {
+    display: none;
+    background-color: black;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(-100%);
+}
+  
+  .mobileMenu.open {
+        display: block;
+        transform: translateY(0);
+  }
+  
+  .mobileMenu a {
+        display: block;
+        padding: 10px 0;
+        color: white;
+        text-align: center;
+  }

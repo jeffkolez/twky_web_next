@@ -1,0 +1,59 @@
+.sectionTitle {
+    color: #000 !important;
+    leading-trim: both !important;
+    text-edge: cap !important;
+    font-family: Bebas Neue !important;
+    font-size: 36px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+    letter-spacing: 1.8px !important;
+}
+
+.sectionContent {
+    color: var(--Black, #313131) !important;
+    font-family: Inter !important;
+    font-size: 20px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+}
+
+.sectionContent img {
+    max-width: 100%;
+}
+
+p.sectionContent, span.sectionContent {
+    font-size: 1.5rem !important;
+}
+
+.sectionContent figure {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
+    max-width: 100%;
+}
+  
+.sectionContent figure img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.sectionContent figure figcaption {
+    color: #555;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.sectionContent p[style*="text-align:center"] {
+    text-align: center;
+}

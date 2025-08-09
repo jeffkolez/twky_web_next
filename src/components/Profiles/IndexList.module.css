@@ -1,0 +1,80 @@
+.container {
+    padding-top: 48px;
+    text-align: center;
+}
+  
+.navigationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+  
+.alphabetContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    padding: 0 8px;
+}
+  
+.alphabetLink {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    text-decoration: underline;
+    color: black;
+    display: inline-block;
+    font-family: "Courier", monospace;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+  
+.alphabetLink:hover {
+    text-decoration: none;
+}
+  
+.navigationLink {
+    font-weight: bold;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    padding: 0;
+}
+
+.active {
+    font-weight: bold;
+    color: red !important;
+    text-decoration: none !important;
+}
+
+@media (max-width: 768px) {
+    .navigationContainer {
+        flex-direction: column;
+    }
+  
+    .alphabetContainer {
+        padding: 12px 0;
+        gap: 6px; /* Adjust for smaller screens */
+    }
+  
+    .alphabetLink {
+        width: 28px; /* Slightly smaller for mobile */
+        height: 28px;
+        line-height: 28px;
+        font-size: 14px;
+    }
+  
+    .navigationLink {
+        font-size: 16px;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+    }
+}

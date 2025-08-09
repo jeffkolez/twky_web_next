@@ -1,0 +1,44 @@
+.footer {
+    padding: 21px 0;
+    background-color: black;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.react-icons {
+    padding: rem(8px) rem(12px);
+    text-decoration: none;
+}
+
+.link {
+    display: block;
+    line-height: 1;
+    padding: rem(8px) rem(12px);
+    border-radius: var(--mantine-radius-sm);
+    color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 500;
+
+    @mixin hover {
+        background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    }
+}
+
+.linkLabel {
+    margin-right: rem(5px);
+}
+
+.followText {
+    color: #FFF !important;
+    font-family: Poppins !important;
+    font-size: 24px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: normal !important;
+    text-align: right !important;
+    padding-bottom: 16px !important;
+}

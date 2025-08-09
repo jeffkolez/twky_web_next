@@ -1,0 +1,32 @@
+.name {
+    font-family: 'Bebas Neue' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 48px !important;
+    line-height: 58px !important;
+    color: #FFFFFF !important;
+}
+
+.title {
+    color: #000 !important;
+    leading-trim: both !important;
+    text-edge: cap !important;
+    font-family: Bebas Neue !important;
+    font-size: 24px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+    letter-spacing: 1.2px !important;
+}
+
+.dataContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.dataColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

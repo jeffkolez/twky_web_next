@@ -1,0 +1,35 @@
+.quoteText {
+    color: #183B56 !important;
+    font-family: Bebas Neue, serif !important;
+    font-size: 28px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 48px !important;
+    letter-spacing: 2px !important;
+}
+
+.nameText {
+    color: #5A7184 !important;
+    font-family: Inter, serif !important;
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+}
+
+.nameText {
+    margin-bottom: '20px';
+}
+
+/* Keep image and text aligned on mobile */
+@media (max-width: 768px) {
+    .mantine-Container-root {
+        padding: 16px;
+    }
+    .mantine-Stack-root {
+        width: 100%; /* Ensures proper stacking */
+    }
+    .mantine-Image-root {
+        margin-bottom: 16px; /* Add space below the image */
+    }
+}

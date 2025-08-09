@@ -1,0 +1,20 @@
+  .link {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+  
+  .tableContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .table {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  th {
+    text-align: left;
+  }
+  

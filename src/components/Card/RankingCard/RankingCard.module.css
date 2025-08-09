@@ -1,0 +1,41 @@
+.rankedTable {
+    border: 1px solid #C1C1C1;
+    background: #FFF;
+    width: 420px;
+}
+
+.rankedTable thead {
+    background-color: black;
+    color: white;
+    font-size: 14px;
+}
+
+.rankedTable thead th {
+    padding: 24px;
+}
+
+.rankedTable thead :first-child {
+    font-size: 24px;
+}
+
+.rankedTable td {
+    padding: 12px 24px;
+}
+
+.rankedTable tbody tr td:first-child:after {
+    content: "";
+    padding-left: 20px;
+    line-height: 24px;
+    width: 1px;
+    border-right: 2px solid #E9E9E9;
+}
+
+.rankedTable tfoot {
+    border-top: 1px solid #E9E9E9;
+}
+
+.progressSection {
+&:not(:first-of-type) {
+     border-left: rem(3px) solid light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
+ }
+}

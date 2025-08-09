@@ -1,0 +1,72 @@
+.highlight {
+    width: 100vw;
+    background-color: black;
+}
+
+.title {
+    color: #FFF !important;
+    font-family: Bebas Neue, serif !important;
+    font-size: 64px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+    text-transform: uppercase !important;
+}
+
+.withOffset {
+    position: relative;
+    top: 20px;
+}
+
+.roundedBorder {
+    border-radius: 12px !important;
+}
+
+.pictureData {
+    position: relative;
+    z-index: 10;
+    padding: 0 20px;
+    bottom: 70px;
+}
+
+.years {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 19px !important;
+    letter-spacing: 2px !important;
+    color: #FFFFFF !important;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+}
+
+.name {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 24px !important;
+    line-height: 29px !important;
+    letter-spacing: 2px !important;
+    color: #FFFFFF !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.indicators {
+    display: flex !important;
+    justify-content: flex-end !important;
+    padding-right: 30px !important;
+    padding-bottom: 10px !important;
+}
+
+.indicator {
+    width: 10px !important;
+    height: 10px !important;
+    transition: width 250ms ease;
+    border-radius: 50% !important;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.75) !important;
+
+    &[data-active] {
+        width: 40px !important;
+        border-radius: 5px !important;
+    }
+}

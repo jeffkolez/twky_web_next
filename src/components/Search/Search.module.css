@@ -1,0 +1,36 @@
+.fullWidth {
+    width: 100vw;
+    background-color: black;
+    height: 231px;
+}
+
+.searchContainer {
+    height: 231px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.searchTitle {
+    color: #FFF !important;
+    font-family: Bebas Neue, serif !important;
+    font-size: 64px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+}
+
+.withOffset {
+    position: relative;
+    top: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.withOffset > * {
+    border-radius: 0 !important;
+}

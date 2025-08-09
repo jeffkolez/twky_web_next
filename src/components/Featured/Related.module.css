@@ -1,0 +1,29 @@
+.mobileWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center; /* Center items horizontally */
+}
+
+.cardWrapper {
+    display: flex;
+    justify-content: center; /* Ensure each card is centered */
+    width: auto; /* Allow the card to fit naturally */
+}
+
+.desktopWrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .desktopWrapper {
+        display: none;
+    }
+
+    .mobileWrapper {
+        display: flex;
+    }
+}

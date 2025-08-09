@@ -1,0 +1,42 @@
+.mobileWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.cardWrapper {
+    display: flex;
+    justify-content: center;
+    width: auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    width: auto;
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+    height: 220px;
+    border-radius: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+.name {
+    color: var(--Base-100, #272727) !important;
+    font-family: 'Inter Variable', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    margin: 0;
+    padding: 0;
+}

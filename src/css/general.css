@@ -1,0 +1,30 @@
+button span {
+    font-size: 14px;
+}
+
+.text-tiny {
+    font-size: 0.5rem;
+}
+
+.text-small {
+    font-size: 1rem;
+}
+
+.text-big {
+    font-size: 2rem;
+}
+
+.text-huge {
+    font-size: 4rem;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline !important;
+}
+
+a:hover {
+    color: inherit;
+    text-decoration: none !important;
+    cursor: pointer;
+}
