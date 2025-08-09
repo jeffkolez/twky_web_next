@@ -1,10 +1,18 @@
-export const metadata = { title: "Privacy Policy | They Will Kill You" };
+import type { Metadata } from "next";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import PrivacyPolicy from "@/components/Static/PrivacyPolicy";
 
-export default function PrivacyPolicyPage() {
+export const metadata: Metadata = {
+  title: "Terms of Service",
+};
+
+export default function TermsOfServicePage() {
   return (
-    <main style={{ padding: 24 }}>
-      <h1>Privacy Policy</h1>
-      <p>Move your Privacy.page.tsx content here.</p>
-    </main>
+    <>
+      <Header />
+      <PrivacyPolicy />
+      <Footer />
+    </>
   );
 }

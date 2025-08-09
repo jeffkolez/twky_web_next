@@ -1,10 +1,18 @@
-export const metadata = { title: "Terms of Service | They Will Kill You" };
+import type { Metadata } from "next";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import TermsOfService from "@/components/Static/TermsOfService";
 
-export default function TermsPage() {
+export const metadata: Metadata = {
+  title: "Terms of Service",
+};
+
+export default function TermsOfServicePage() {
   return (
-    <main style={{ padding: 24 }}>
-      <h1>Terms of Service</h1>
-      <p>Move your TOS.page.tsx content here.</p>
-    </main>
+    <>
+      <Header />
+      <TermsOfService />
+      <Footer />
+    </>
   );
 }

@@ -1,5 +1,6 @@
-import { Button, Group, Burger, Container, Flex } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+"use client";
+
+import { Group, Burger, Flex } from '@mantine/core';
 import {
   FaFacebook,
   FaYoutube,
@@ -14,7 +15,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
-export default () => {
+export default function Header() {
     const router = useRouter();
     const [search, setSearch] = useState('');
     const [opened, setOpened] = useState(false);
