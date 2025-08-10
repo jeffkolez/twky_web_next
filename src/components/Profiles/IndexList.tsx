@@ -1,3 +1,5 @@
+"use client";
+
 import { Container } from '@mantine/core';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';

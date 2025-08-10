@@ -4,7 +4,7 @@ import { Space } from "@mantine/core";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Related from "@/components/Featured/Related";
-import EditBioThanks from "@/components/Profiles/EditThanks"; // must be a client component if it uses hooks
+import EditBioThanks from "@/components/Profiles/EditThanks";
 import { getProfile } from "@/queries";
 
 export async function generateMetadata({

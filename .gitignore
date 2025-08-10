@@ -53,3 +53,6 @@ Thumbs.db
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Generated files
+sitemap.xml

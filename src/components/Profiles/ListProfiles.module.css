@@ -14,7 +14,7 @@
     margin: 0 auto;
   }
   
-  th {
+  th.header {
     text-align: left;
   }
   

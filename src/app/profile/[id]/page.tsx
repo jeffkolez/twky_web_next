@@ -57,8 +57,8 @@ export default async function ProfileRoute({ params }: { params: { id: string } 
         <>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <Header />
-        <ProfileSummary isLoading={false} data={data} />
-        <ProfileContent isLoading={false} data={data} />
+        <ProfileSummary data={data} isLoading={false} />
+        <ProfileContent data={data} />
         <Related title="Related Profiles" shortUrl={data.shortUrl || ''} />
         <Space h="xl" />
         <Footer />

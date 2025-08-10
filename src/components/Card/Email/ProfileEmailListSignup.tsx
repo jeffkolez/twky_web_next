@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { Container, Text, TextInput, Button } from '@mantine/core';
 import classes from './EmailListSignup.module.css';

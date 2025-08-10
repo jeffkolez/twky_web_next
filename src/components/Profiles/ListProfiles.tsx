@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { Container, Flex, Space, Table, Skeleton } from '@mantine/core';
 import { usePathname } from 'next/navigation';
@@ -25,10 +27,10 @@ const ListProfiles = ({ data = [], isLoading }: { data?: ProfilesList[], isLoadi
           <Table className={classes.table}>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Nationality</th>
-                <th>Victims</th>
+                <th className={classes.header}>Name</th>
+                <th className={classes.header}>Date</th>
+                <th className={classes.header}>Nationality</th>
+                <th className={classes.header}>Victims</th>
               </tr>
             </thead>
             <tbody>

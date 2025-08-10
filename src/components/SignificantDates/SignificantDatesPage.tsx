@@ -1,87 +1,59 @@
-import { Container, Flex, ScrollArea, Skeleton, Text, Box } from '@mantine/core';
-import { useQuery } from '@tanstack/react-query';
-import EventCard from '@/components/Card/EventCard/EventCard';
+import { Container, Grid, GridCol, Text, Box } from "@mantine/core";
+import EventCard from "@/components/Card/EventCard/EventCard";
+import type { ProfileCard } from "@/types";
+import Link from "next/link";
 
-import classes from './SignificantDates.module.css';
-import { getSignificantEvents } from '@/queries';
-import { ProfileCard } from '@/types';
-import { useRouter } from 'next/navigation';
+function apiBase(): string {
+    const raw =
+        process.env.API_URL ??
+        process.env.NEXT_PUBLIC_API_URL ??
+        "http://127.0.0.1:8000/api";
+    return raw.replace(/\/$/, "");
+}
 
-const splitData = (data: ProfileCard[] | undefined, firstRowCount: number) => {
-    if (!data) return [[], []];
-    return [data.slice(0, firstRowCount), data.slice(firstRowCount)];
-};
-
-const Mobile = ({ data }: { data?: ProfileCard[] }) => {
-    return (
-        <ScrollArea w="100%" hiddenFrom="md">
-            <Flex direction="column" w="100%">
-                <Card data={data} />
-            </Flex>
-        </ScrollArea>
-    );
-};
-
-const Desktop = ({ data }: { data?: ProfileCard[] }) => {
-    return (
-        <span>
-            <Box
-                style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(4, 1fr)',
-                    gap: '16px',
-                }}
-            >
-                {data && data.map((card) => (
-                    <Box key={card.id}>
-                        <EventCard data={card} />
-                    </Box>
-                ))}
-            </Box>
-        </span>
-    );
-};
-
-const Card = ({ data }: { data?: ProfileCard[] }) => {
-    const rows = Math.ceil((data?.length ?? 0) / 4);
-    return (
-        <span>
-            {Array.from({ length: rows }, (_, index) => (
-                <Flex key={index} justify="space-between" w="100%" mt={index > 0 ? 'md' : 0}>
-                    {data?.slice(index * 4, index * 4 + 4).map((card) => (
-                        <EventCard key={card.id} data={card} />
-                    ))}
-                </Flex>
-            ))}
-        </span>
-    );
-};
-
-
-export default ({ title, dateParam }: { title: string; dateParam: string }) => {
-    const router = useRouter();
-    const { data, isLoading, error } = useQuery({
-        queryKey: ['getSignificantEvents', dateParam],
-        queryFn: () => getSignificantEvents(dateParam)
+async function fetchEventsBySlug(slug: string): Promise<ProfileCard[]> {
+    const timezone = process.env.SITE_TIMEZONE ?? "America/Vancouver";
+    const res = await fetch(`${apiBase()}/events/${encodeURIComponent(slug)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ timezone }),
+        next: { revalidate: 600 },
     });
-    
-    if (error) {
-        router.push('/');
-        return null;
-    }
-    
-    const match = dateParam?.match(/^([A-Za-z]+)(\d+)$/);
-    const month = match ? match[1] : '';
-    const day = match ? match[2] : '';
+    if (!res.ok) return [];
+    return res.json();
+}
+
+export default async function SignificantDatesPage({
+    title,
+    dateParam,
+}: {
+    title: string;
+    dateParam: string;
+}) {
+    const data = await fetchEventsBySlug(dateParam);
+
     return (
         <Container size="xl" mt="xl">
-            {isLoading || !data ? <Skeleton w="100%" h="220px" /> : (
-                <>
-                    <Text className={classes.title}>{month} {day} {title}</Text>
-                    <Mobile data={data} />
-                    <Desktop data={data} />
-                </>
+            <Text style={{ fontSize: 32, fontWeight: 600, letterSpacing: 1.6 }}>
+                {title}
+            </Text>
+
+            {data.length === 0 ? (
+                <Box mt="md">
+                    <Text>No events found for this date.</Text>
+                    <Text>
+                        Go back to <Link href="/">home</Link> or try another date.
+                    </Text>
+                </Box>
+            ) : (
+                <Grid mt="md" gutter="md" columns={12}>
+                    {data.map((card) => (
+                        <GridCol key={card.id} span={{ base: 12, sm: 6, md: 3 }}>
+                            <EventCard data={card} />
+                        </GridCol>
+                    ))}
+                </Grid>
             )}
         </Container>
     );
-};
+}

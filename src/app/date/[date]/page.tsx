@@ -1,12 +1,46 @@
-"use client";
-// Old route: /date/:date  (example: september21)
+import type { Metadata } from "next";
+import { Space } from "@mantine/core";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import IndexList from "@/components/Profiles/IndexList";
+import SignificantDatesPage from "@/components/SignificantDates/SignificantDatesPage";
 
-export default function DateRoute({ params }: { params: { date: string } }) {
-  return (
-    <main style={{ padding: 24 }}>
-      <h1>Date</h1>
-      <p>Date param: {params.date}</p>
-      {/* <SignificantDatesPage dateParam={params.date} /> */}
-    </main>
-  );
+function capFirst(s: string) {
+    return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+}
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ date: string }>;
+}): Promise<Metadata> {
+    const { date } = await params;
+    const month = date.replace(/[0-9]/g, "");
+    const day = date.replace(/[a-zA-Z]/g, "");
+    const formatted = `${capFirst(month)} ${day}`;
+    return {
+        title: `${formatted} This Day in Infamy | They Will Kill You`,
+        alternates: {
+            canonical: `https://theywillkillyou.com/date/${encodeURIComponent(date)}`,
+        },
+    };
+}
+
+export default async function Page({
+    params,
+}: {
+    params: Promise<{ date: string }>;
+}) {
+    const { date } = await params;
+
+    return (
+        <>
+            <Header />
+            <SignificantDatesPage title="In History" dateParam={date} />
+            <IndexList />
+            <Space h="xl" />
+            <Space h="xl" />
+            <Footer />
+        </>
+    );
 }

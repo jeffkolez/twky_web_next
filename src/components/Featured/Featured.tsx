@@ -1,3 +1,5 @@
+"use client";
+
 import { Container, Flex, ScrollArea, Skeleton, Text, Box } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import EventCard from '@/components/Card/EventCard/EventCard';
