@@ -14,10 +14,17 @@ export async function generateMetadata({
 }: {
     params: Promise<{ date: string }>;
 }): Promise<Metadata> {
+    const capitalizeFirstLetter = (str: string) =>
+        str.charAt(0).toUpperCase() + str.slice(1);
+
     const { date } = await params;
     const month = date.replace(/[0-9]/g, "");
-    const day = date.replace(/[a-zA-Z]/g, "");
-    const formatted = `${capFirst(month)} ${day}`;
+    let day = date.replace(/[a-zA-Z]/g, "");
+    if (day.startsWith("0")) {
+        day = day.substring(1);
+    }
+    const formattedMonth = capitalizeFirstLetter(month);
+    const formatted = `${formattedMonth} ${day} In History`;
     return {
         title: `${formatted} This Day in Infamy | They Will Kill You`,
         alternates: {
@@ -32,11 +39,18 @@ export default async function Page({
     params: Promise<{ date: string }>;
 }) {
     const { date } = await params;
+    const month = date.replace(/[0-9]/g, "");
+    let day = date.replace(/[a-zA-Z]/g, "");
+    if (day.startsWith("0")) {
+        day = day.substring(1);
+    }
+    const formattedMonth = capFirst(month);
+    const formatted = `${formattedMonth} ${day} In History`;
 
     return (
         <>
             <Header />
-            <SignificantDatesPage title="In History" dateParam={date} />
+            <SignificantDatesPage title={formatted} dateParam={date} />
             <IndexList />
             <Space h="xl" />
             <Space h="xl" />
