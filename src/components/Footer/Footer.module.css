@@ -1,42 +1,50 @@
 .footer {
+    background: #000;
     padding: 21px 0;
-    background-color: black;
 }
 
 .inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
-.react-icons {
-    padding: rem(8px) rem(12px);
-    text-decoration: none;
-}
 
 .link {
     display: block;
     line-height: 1;
-    padding: rem(8px) rem(12px);
-    border-radius: var(--mantine-radius-sm);
-    color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
-    font-size: var(--mantine-font-size-sm);
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: #c1c2c5;
+    font-size: 14px;
     font-weight: 500;
-
-    @mixin hover {
-        background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
-    }
+    text-decoration: none !important;
 }
 
-.linkLabel {
-    margin-right: rem(5px);
+.link:hover {
+    text-decoration: underline !important;
+    color: #c1c2c5;
 }
 
+/* Socials */
+.icons :global(svg) {
+    width: 32px;
+    height: 32px;
+    fill: #fff;
+}
+
+.icons :global(a) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Label */
 .followText {
-    color: #FFF !important;
-    font-family: Poppins !important;
+    color: #fff !important;
+    font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 24px !important;
-    font-style: normal !important;
     font-weight: 700 !important;
     line-height: normal !important;
     text-align: right !important;

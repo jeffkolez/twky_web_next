@@ -1,11 +1,12 @@
 .title {
     color: #000 !important;
-    font-family: Bebas Neue, serif !important;
+    font-family: "Bebas Neue", serif !important;
     font-size: 32px !important;
     font-style: normal !important;
     font-weight: 400 !important;
     line-height: normal;
     letter-spacing: 1.6px !important;
+    text-transform: uppercase;
 }
 
 .moreText {
@@ -19,16 +20,15 @@
     height: 220px;
     background-color: #333;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-    color: white;
-    font-weight: bold;
     justify-content: flex-start;
     align-items: flex-end;
     padding: 16px;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: bold;
 }
 
 .moreBox:hover {
     background-color: #666;
 }
+  

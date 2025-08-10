@@ -1,5 +1,5 @@
 import { Container, Flex, ScrollArea, Skeleton, Text, Box } from '@mantine/core';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import EventCard from '@/components/Card/EventCard/EventCard';
 
 import classes from './Featured.module.css';
@@ -52,7 +52,9 @@ const Card = ({ data }: { data?: ProfileCard[] }) => {
 };
 
 export default ({ title, shortUrl }: { title: string, shortUrl: string }) => {
-    const { data, isLoading, isError } = useQuery(['getRelated', { id: shortUrl }], getRelated, {
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ['getRelated', { id: shortUrl }],
+        queryFn: getRelated,
         retry: false
     });
     console.log(data);

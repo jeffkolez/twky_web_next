@@ -1,12 +1,11 @@
 import { Container, Flex, ScrollArea, Skeleton, Text, Box } from '@mantine/core';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import EventCard from '@/components/Card/EventCard/EventCard';
 
 import classes from './SignificantDates.module.css';
 import { getSignificantEvents } from '@/queries';
 import { ProfileCard } from '@/types';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const splitData = (data: ProfileCard[] | undefined, firstRowCount: number) => {
     if (!data) return [[], []];
@@ -59,15 +58,19 @@ const Card = ({ data }: { data?: ProfileCard[] }) => {
 };
 
 
-export default ({ title }: { title: string }) => {
-    const { date } = useParams<{ date?: string }>();
-    const navigate = useNavigate();
-    const { data, isLoading } = useQuery(['getSignificantEvents', date], () => getSignificantEvents(date), {
-        onError: () => {
-            navigate('/');
-        }
+export default ({ title, dateParam }: { title: string; dateParam: string }) => {
+    const router = useRouter();
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['getSignificantEvents', dateParam],
+        queryFn: () => getSignificantEvents(dateParam)
     });
-    const match = date?.match(/^([A-Za-z]+)(\d+)$/);
+    
+    if (error) {
+        router.push('/');
+        return null;
+    }
+    
+    const match = dateParam?.match(/^([A-Za-z]+)(\d+)$/);
     const month = match ? match[1] : '';
     const day = match ? match[2] : '';
     return (

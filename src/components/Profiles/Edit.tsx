@@ -1,13 +1,14 @@
+"use client";
+
 import { Container, Flex, Stack, Textarea, Text, Button, Image, Skeleton } from '@mantine/core';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Profile } from '@/types';
 import classes from './Edit.module.css';
 
 export default ({ data }: { data?: Profile }) => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const { shortUrl } = location.state || {};
+    const router = useRouter();
+    const shortUrl = data?.shortUrl;
     const [comment, setComment] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -19,7 +20,7 @@ export default ({ data }: { data?: Profile }) => {
         };
 
         try {
-            const { VITE_API_URL: API_URL } = import.meta.env;
+            const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
             const response = await fetch(`${API_URL}/profile/suggest`, {
                 method: 'POST',
                 headers: {
@@ -28,7 +29,7 @@ export default ({ data }: { data?: Profile }) => {
                 body: JSON.stringify(requestBody),
             });
             if (response.ok) {
-                navigate('/edit-bio-thanks', { state: { shortUrl } });
+                router.push(`/edit-bio-thanks?id=${shortUrl}`);
             }
         } catch (error) {
             console.error('Error submitting the comment:', error);

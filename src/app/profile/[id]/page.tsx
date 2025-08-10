@@ -8,15 +8,19 @@ import { JsonLdSchema } from '@/types';
 import { notFound } from 'next/navigation';
 import { Space } from '@mantine/core';
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-    // Call your API on the server to get the name
-    const data = await getProfile({ queryKey: ['getProfile', { id: params.id }] });
-
-    if (!data) return { title: 'Profile not found | They Will Kill You' };
-
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}) {
+    const { id } = await params;
+    const data = await getProfile({ queryKey: ["getProfile", { id }] });
+    if (!data) {
+        return { title: "Profile not found | They Will Kill You" };
+    }
     return {
         title: `The Story of ${data.type} ${data.name} | They Will Kill You`,
-        description: data.markup?.description || '',
+        description: data.markup?.description || "",
     };
 }
 

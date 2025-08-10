@@ -12,7 +12,7 @@ export default function EmailListSignup() {
     setStatus('loading');
 
     try {
-        const { VITE_API_URL: API_URL } = import.meta.env;
+        const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
         const response = await fetch(`${API_URL}/api/subscribe`, {
             method: 'POST',
             headers: {
