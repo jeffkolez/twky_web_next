@@ -9,6 +9,32 @@ function capFirst(s: string) {
     return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
 }
 
+export function generateStaticParams(): Array<{ date: string }> {
+    const months: Array<{ name: string; days: number }> = [
+        { name: "january", days: 31 },
+        { name: "february", days: 29 },
+        { name: "march", days: 31 },
+        { name: "april", days: 30 },
+        { name: "may", days: 31 },
+        { name: "june", days: 30 },
+        { name: "july", days: 31 },
+        { name: "august", days: 31 },
+        { name: "september", days: 30 },
+        { name: "october", days: 31 },
+        { name: "november", days: 30 },
+        { name: "december", days: 31 },
+    ];
+
+    const params: Array<{ date: string }> = [];
+    for (const { name, days } of months) {
+        for (let d = 1; d <= days; d++) {
+            const dd = String(d).padStart(2, "0");
+            params.push({ date: `${name}${dd}` });
+        }
+    }
+    return params;
+}
+
 export async function generateMetadata({
     params,
 }: {
@@ -28,7 +54,9 @@ export async function generateMetadata({
     return {
         title: `${formatted} This Day in Infamy | They Will Kill You`,
         alternates: {
-            canonical: `https://theywillkillyou.com/date/${encodeURIComponent(date)}`,
+            canonical: `https://theywillkillyou.com/date/${encodeURIComponent(
+                date
+            )}`,
         },
     };
 }

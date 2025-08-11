@@ -11,9 +11,9 @@ import { notFound } from 'next/navigation';
 import { Space } from '@mantine/core';
 
 export async function generateMetadata(
-    { params }: RouteProps<{ id: string }>
+    props: RouteProps<{ id: string }>
 ): Promise<Metadata> {
-    const { id } = await params;
+    const { id } = await props.params;
     const data = await getProfile({ queryKey: ['getProfile', { id }] });
 
     if (!data) {
@@ -27,9 +27,9 @@ export async function generateMetadata(
 }
 
 export default async function ProfileRoute(
-    { params }: RouteProps<{ id: string }>
+    props: RouteProps<{ id: string }>
 ) {
-    const { id } = await params;
+    const { id } = await props.params;
     const data = await getProfile({ queryKey: ['getProfile', { id }] });
 
     if (!data) notFound();

@@ -6,12 +6,10 @@ import Search from '@/components/Search/Search';
 import SearchResults from '@/components/SearchResults/SearchResults';
 import Featured from '@/components/Featured/Featured';
 
-export async function generateMetadata({
-    params,
-}: {
-    params: Promise<{ term: string }>;
-}): Promise<Metadata> {
-    const { term } = await params;
+export async function generateMetadata(
+    props: { params: Promise<{ term: string }> }
+): Promise<Metadata> {
+    const { term } = await props.params;
     const decoded = decodeURIComponent(term ?? '');
     return {
         title: `Search Results for ${decoded} | They Will Kill You`,
@@ -22,12 +20,10 @@ export async function generateMetadata({
     };
 }
 
-export default async function Page({
-    params,
-}: {
-    params: Promise<{ term: string }>;
-}) {
-    const { term } = await params;
+export default async function Page(
+    props: { params: Promise<{ term: string }> }
+) {
+    const { term } = await props.params;
     const decoded = decodeURIComponent(term ?? '');
 
     return (
