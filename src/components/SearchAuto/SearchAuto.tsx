@@ -1,41 +1,56 @@
-import { Autocomplete, ComboboxItem } from '@mantine/core';
-import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import { search } from '@/queries';
+"use client";
 
-import classes from './SearchAuto.module.css';
+import { useState } from "react";
+import { Autocomplete, ComboboxItem } from "@mantine/core";
+import { useQuery } from "@tanstack/react-query";
+import { search } from "@/queries";
+import type { ProfileSearchResult } from "@/types";
+import classes from "./SearchAuto.module.css";
 
-export default ({ onOptionSubmit, onChange, onKeyDown }: { onOptionSubmit: any, onChange: any, onKeyDown: any }) => {
-    const [searchText, setSearchText] = useState('');
-    const { isLoading, data } = useQuery({
-        queryKey: [`search-${searchText}`, { w: searchText }],
-        queryFn: search
+export interface SearchAutoProps {
+    onOptionSubmit: (value: string) => void;
+    onChange: (value: string) => void;
+    onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+}
+
+export default function SearchAuto({
+    onOptionSubmit,
+    onChange,
+    onKeyDown,
+}: SearchAutoProps) {
+    const [searchText, setSearchText] = useState("");
+
+    const { isLoading, data } = useQuery<ProfileSearchResult[]>({
+        queryKey: ["search", { w: searchText }],
+        queryFn: () => search({ queryKey: ["search", { w: searchText }] }),
+        enabled: searchText.trim().length > 0,
     });
 
-    let profilesByShortUrl: Array<ComboboxItem> = [];
-
-    if (!isLoading && data) {
-        profilesByShortUrl = data.map(({ shortUrl, name }: { shortUrl: string, name: string }) => ({ value: shortUrl, label: name }));
-    }
+    const profilesByShortUrl: ComboboxItem[] =
+        !isLoading && Array.isArray(data)
+            ? data.map(({ shortUrl, name }) => ({
+                  value: shortUrl,
+                  label: name,
+              }))
+            : [];
 
     return (
         <Autocomplete
-            style={{ width: '80%' }}
+            style={{ width: "80%" }}
             className={classes.auto}
             data={profilesByShortUrl}
             maxDropdownHeight={300}
             placeholder="Search for a profile"
-            onChange={(value: string) => {
+            onChange={(value) => {
                 setSearchText(value);
                 onChange(value);
             }}
-            onKeyDown={e => {
-                    if (e.key === 'Enter') {
-                        onKeyDown();
-                    }
+            onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                    onKeyDown(e);
                 }
-            }
+            }}
             onOptionSubmit={onOptionSubmit}
         />
     );
-};
+}

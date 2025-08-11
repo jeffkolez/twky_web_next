@@ -10,31 +10,31 @@ export default function EmailListSignup() {
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('loading');
+        e.preventDefault();
+        setStatus('loading');
 
-    try {
-        const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${API_URL}/api/subscribe`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email }),
-        });
+        try {
+            const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+            const response = await fetch(`${API_URL}/api/subscribe`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
 
-        if (response.ok) {
-            setStatus('success');
-            setMessage("Thanks for signing up. Check your inbox for your ebook!");
-        } else {
+            if (response.ok) {
+                setStatus('success');
+                setMessage("Thanks for signing up. Check your inbox for your ebook!");
+            } else {
+                setStatus('error');
+                setMessage('Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            console.error(error);
             setStatus('error');
-            setMessage('Something went wrong. Please try again.');
+            setMessage('An error occurred. Please try again later.');
         }
-    } catch (error) {
-        console.error(error);
-        setStatus('error');
-        setMessage('An error occurred. Please try again later.');
-    }
     };
 
     return (
@@ -43,11 +43,10 @@ export default function EmailListSignup() {
             <h3 className={classes.subtitle}>Get a free chapter from our e-book</h3>
             <div className={classes.contentWrapper}>
                 <div className={classes.textSection}>
-                    
                     <p className={classes.text}>
-                        Get exclusive previews, behind-the-scenes insights on infamous cases, and rare facts about history's most notorious killers and victims.
-                        As a member, you’ll receive a free chapter from our e-book, increased chances to win our exclusive t-shirt giveaways, and special discounts on merch.
-                        Don't miss out on chilling details others don’t know about — join today and dive deeper into true crime!
+                        Get exclusive previews, behind-the-scenes insights on infamous cases, and rare facts about history&apos;s most notorious killers and victims.
+                        As a member, you&apos;ll receive a free chapter from our e-book, increased chances to win our exclusive t-shirt giveaways, and special discounts on merch.
+                        Don&apos;t miss out on chilling details others don&apos;t know about — join today and dive deeper into true crime!
                     </p>
                 </div>
                 <div className={classes.formSection}>
@@ -60,12 +59,12 @@ export default function EmailListSignup() {
                             className={classes.input}
                             type="email"
                         />
-                        <Button 
+                        <Button
                             type="submit"
                             disabled={status === 'loading'}
                             className={classes.button}
                             style={{ backgroundColor: 'red', color: 'white' }}
-                            >
+                        >
                             {status === 'loading' ? 'Subscribing...' : 'Subscribe Now'}
                         </Button>
                         {status === 'success' && <Text color="white">{message}</Text>}

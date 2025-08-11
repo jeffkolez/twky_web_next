@@ -29,6 +29,16 @@ const nextConfig: NextConfig = {
         },
         ];
     },
+
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'twky.nyc3.cdn.digitaloceanspaces.com',
+                pathname: '/**',
+            },
+        ],
+    },
 };
 
 export default nextConfig;

@@ -6,17 +6,21 @@ import { useState } from 'react';
 import { Profile } from '@/types';
 import classes from './Edit.module.css';
 
-export default ({ data }: { data?: Profile }) => {
+interface EditProps {
+    data?: Profile;
+}
+
+const EditProfile: React.FC<EditProps> = ({ data }) => {
     const router = useRouter();
     const shortUrl = data?.shortUrl;
     const [comment, setComment] = useState('');
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const requestBody = {
-            comment: comment,
-            shortUrl: shortUrl,
+            comment,
+            shortUrl,
         };
 
         try {
@@ -30,6 +34,9 @@ export default ({ data }: { data?: Profile }) => {
             });
             if (response.ok) {
                 router.push(`/edit-bio-thanks?id=${shortUrl}`);
+            } else {
+                // Optional: surface an error state for the user here
+                console.error('Failed to submit comment', await response.text());
             }
         } catch (error) {
             console.error('Error submitting the comment:', error);
@@ -47,15 +54,15 @@ export default ({ data }: { data?: Profile }) => {
                     gap="md"
                 >
                     <Stack align="center" style={{ flex: '0 0 20%' }}>
-                        {data?.media[0] ? (
-                            <Image 
-                                src={data.media[0]} 
-                                alt={data.name} 
-                                style={{ 
-                                    margin: 0, 
+                        {data?.media?.[0] ? (
+                            <Image
+                                src={data.media[0]}
+                                alt={data.name}
+                                style={{
+                                    margin: 0,
                                     maxHeight: '200px',
                                     objectFit: 'contain',
-                                }} 
+                                }}
                             />
                         ) : (
                             <Skeleton h="200px" w="200px" />
@@ -75,19 +82,21 @@ export default ({ data }: { data?: Profile }) => {
                             style={{ width: '100%' }}
                         />
 
-                        <Button 
-                            type="submit" 
-                            mt="md" 
-                            variant="default" 
-                            w="100%" 
+                        <Button
+                            type="submit"
+                            mt="md"
+                            variant="default"
+                            w="100%"
                             className={classes.profileButton}
                         >
                             Submit Update
                         </Button>
                     </Stack>
                 </Flex>
-
             </form>
         </Container>
     );
 };
+
+EditProfile.displayName = 'EditProfile';
+export default EditProfile;

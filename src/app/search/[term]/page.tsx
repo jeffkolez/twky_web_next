@@ -1,11 +1,10 @@
-// src/app/search/[term]/page.tsx
-import type { Metadata } from "next";
-import { Space } from "@mantine/core";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-import Search from "@/components/Search/Search";
-import SearchResults from "@/components/SearchResults/SearchResults";
-import Featured from "@/components/Featured/Featured";
+import type { Metadata } from 'next';
+import { Space } from '@mantine/core';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
+import Search from '@/components/Search/Search';
+import SearchResults from '@/components/SearchResults/SearchResults';
+import Featured from '@/components/Featured/Featured';
 
 export async function generateMetadata({
     params,
@@ -13,20 +12,23 @@ export async function generateMetadata({
     params: Promise<{ term: string }>;
 }): Promise<Metadata> {
     const { term } = await params;
-    const decoded = decodeURIComponent(term ?? "");
+    const decoded = decodeURIComponent(term ?? '');
     return {
         title: `Search Results for ${decoded} | They Will Kill You`,
         description: `Search results for ${decoded} on They Will Kill You.`,
-        alternates: { canonical: `https://theywillkillyou.com/search/${encodeURIComponent(decoded)}` },
+        alternates: {
+            canonical: `https://theywillkillyou.com/search/${encodeURIComponent(decoded)}`,
+        },
     };
 }
 
 export default async function Page({
     params,
 }: {
-    params: { term: string };
+    params: Promise<{ term: string }>;
 }) {
-    const decoded = decodeURIComponent(params.term ?? "");
+    const { term } = await params;
+    const decoded = decodeURIComponent(term ?? '');
 
     return (
         <>

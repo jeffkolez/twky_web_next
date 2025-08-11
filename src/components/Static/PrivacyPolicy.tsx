@@ -84,7 +84,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section className="privacy-section">
-                <h2 className="privacy-heading">9. Children's Privacy</h2>
+                <h2 className="privacy-heading">9. Children&lsquo;s Privacy</h2>
                 <p className="privacy-text">
                     Our site is not intended for children under the age of 13. We do not knowingly collect personal data from children under this age. If we become aware that we have inadvertently collected such data, we will delete it immediately.
                 </p>
@@ -113,7 +113,7 @@ const PrivacyPolicy = () => {
                 This website uses the services of Ezoic Inc. (“Ezoic”), including to manage third-party interest-based advertising. Ezoic may employ a variety of technologies on this website, including tools to serve content, display advertisements and enable advertising to visitors of this website, which may utilize first and third-party cookies.
                 </p>
                 <p className="privacy-text">
-                A cookie is a small text file sent to your device by a web server that enables the website to remember information about your browsing activity. First-party cookies are created by the site you are visiting, while third-party cookies are set by domains other than the one you're visiting. Ezoic and our partners may place third-party cookies, tags, beacons, pixels, and similar technologies to monitor interactions with advertisements and optimize ad targeting. Please note that disabling cookies may limit access to certain content and features on the website, and rejecting cookies does not eliminate advertisements but will result in non-personalized advertising. You can find more information about cookies and how to manage them here.
+                A cookie is a small text file sent to your device by a web server that enables the website to remember information about your browsing activity. First-party cookies are created by the site you are visiting, while third-party cookies are set by domains other than the one you&lsquo;re visiting. Ezoic and our partners may place third-party cookies, tags, beacons, pixels, and similar technologies to monitor interactions with advertisements and optimize ad targeting. Please note that disabling cookies may limit access to certain content and features on the website, and rejecting cookies does not eliminate advertisements but will result in non-personalized advertising. You can find more information about cookies and how to manage them here.
                 The following information may be collected, used, and stored in a cookie when serving personalized ads:
                 </p>
                 <ul className="privacy-list">

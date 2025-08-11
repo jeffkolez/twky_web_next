@@ -11,8 +11,8 @@ export default function TermsOfService() {
             <section className="terms-section">
                 <h2 className="terms-heading">1. Introduction</h2>
                 <p className="terms-text">
-                    Welcome to <em>They Will Kill You</em>. These Terms of Service ("Terms") govern your access to and use of the website operated by Bored Badger LLC. By using this site, you agree to comply with these Terms. If you do not agree to these Terms, please refrain from using the site.
                 </p>
+                    Welcome to <em>They Will Kill You</em>. These Terms of Service (&lsquo;Terms&rsquo;) govern your access to and use of the website operated by Bored Badger LLC. By using this site, you agree to comply with these Terms. If you do not agree to these Terms, please refrain from using the site.
             </section>
 
             <section className="terms-section">
@@ -39,7 +39,7 @@ export default function TermsOfService() {
             <section className="terms-section">
                 <h2 className="terms-heading">5. Disclaimer of Warranties</h2>
                 <p className="terms-text">
-                    The content provided on <em>They Will Kill You</em> is "as is," without warranties of any kind, either expressed or implied. Bored Badger LLC does not warrant the accuracy, reliability, or completeness of the content. The company makes no guarantees that the site will be error-free, secure, or free from viruses.
+                    The content provided on <em>They Will Kill You</em> is &lsquo;as is,&rsquo; without warranties of any kind, either expressed or implied. Bored Badger LLC does not warrant the accuracy, reliability, or completeness of the content. The company makes no guarantees that the site will be error-free, secure, or free from viruses.
                 </p>
             </section>
 

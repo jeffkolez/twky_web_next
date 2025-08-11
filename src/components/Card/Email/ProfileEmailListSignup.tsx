@@ -10,44 +10,44 @@ export default function EmailListSignup() {
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('loading');
+        e.preventDefault();
+        setStatus('loading');
 
-    try {
-        const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${API_URL}/api/subscribe`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email }),
-        });
+        try {
+            const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+            const response = await fetch(`${API_URL}/api/subscribe`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
 
-        if (response.ok) {
-            setStatus('success');
-            setMessage("Thanks for signing up. Check your inbox for your ebook!");
-        } else {
+            if (response.ok) {
+                setStatus('success');
+                setMessage("Thanks for signing up. Check your inbox for your ebook!");
+            } else {
+                setStatus('error');
+                setMessage('Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            console.error(error);
             setStatus('error');
-            setMessage('Something went wrong. Please try again.');
+            setMessage('An error occurred. Please try again later.');
         }
-    } catch (error) {
-        console.error(error);
-        setStatus('error');
-        setMessage('An error occurred. Please try again later.');
-    }
     };
 
     return (
         <Container size="xl" mt="xl" className={classes.subscribe}>
-    
             <div className={classes.contentWrapper}>
                 <div className={classes.textSection}>
-                    
                     <div className={classes.text}>
-                        <div><strong>Like what you're reading?</strong></div>
                         <div>
-                            Join our mailing list for exclusive content you won't find anywhere else.
-                            You'll receive a free chapter from our e-book, increased chances to win our t-shirt giveaways, and special discounts on merch.
+                            <strong>Like what you&apos;re reading?</strong>
+                        </div>
+                        <div>
+                            Join our mailing list for exclusive content you won&apos;t find anywhere else.
+                            You&apos;ll receive a free chapter from our e-book, increased chances to win our t-shirt giveaways, and special discounts on merch.
                         </div>
                     </div>
                 </div>
@@ -60,13 +60,13 @@ export default function EmailListSignup() {
                             required
                             className={classes.input}
                             type="email"
-                            />
-                        <Button 
+                        />
+                        <Button
                             type="submit"
                             disabled={status === 'loading'}
                             className={classes.button}
                             style={{ backgroundColor: 'red', color: 'white' }}
-                            >
+                        >
                             {status === 'loading' ? 'Subscribing...' : 'Subscribe Now'}
                         </Button>
                         {status === 'success' && <Text color="white">{message}</Text>}

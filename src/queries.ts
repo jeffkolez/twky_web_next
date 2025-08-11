@@ -42,8 +42,8 @@ export const getSignificantEvents = async (date?: string): Promise<ProfileCard[]
     return response.json();
 };
 
-export const getRelated = async ({ queryKey }: { queryKey: any }): Promise<ProfileCard[]> => {
-    const [_, { id }] = queryKey;
+export const getRelated = async ({ queryKey }: { queryKey: [string, { id: string }] }): Promise<ProfileCard[]> => {
+    const [, { id }] = queryKey;
     const response = await fetch(`${API_URL}/profiles/related/${id}`);
 
     if (!response.ok) {
@@ -63,8 +63,8 @@ export const getFeatured = async (): Promise<ProfileCard[]> => {
     return response.json();
 };
 
-export const getProfile = async ({ queryKey }: { queryKey: any }): Promise<Profile> => {
-    const [_, { id }] = queryKey;
+export const getProfile = async ({ queryKey }: { queryKey: [string, { id: string }] }): Promise<Profile> => {
+    const [, { id }] = queryKey;
     const response = await fetch(`${API_URL}/profiles/${id}`);
 
     if (!response.ok) {
@@ -84,9 +84,8 @@ export const getQuote = async (): Promise<ProfileQuote> => {
     return response.json();
 };
 
-export const search = async ({ queryKey }: { queryKey: any }): Promise<ProfileSearchResult[]> => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_, { w }] = queryKey;
+export const search = async ({ queryKey }: { queryKey: [string, { w: string }] }): Promise<ProfileSearchResult[]> => {
+    const [, { w }] = queryKey;
     const response = await fetch(`${API_URL}/profiles/search?w=${w}`);
 
     if (!response.ok) {

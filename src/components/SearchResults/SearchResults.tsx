@@ -1,9 +1,8 @@
 "use client";
 
-import { Container, Grid, Skeleton, Stack, Text, Space, Flex } from "@mantine/core";
+import { Container, Grid, Skeleton, Text, Space, Flex } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import VerticalAd from "@/components/Ads/VerticalAd";
 import ResultsTable from "@/components/ResultsTable/ResultsTable";
 import { search } from "@/queries";
 import classes from "./SearchResults.module.css";

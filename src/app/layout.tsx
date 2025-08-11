@@ -15,16 +15,18 @@ const bebasNeue = Bebas_Neue({
     weight: "400",
     subsets: ["latin"],
     display: "swap",
+    variable: "--font-bebas",
 });
 
 const inter = Inter({
     subsets: ["latin"],
     display: "swap",
+    variable: "--font-inter",
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
+        <html lang="en" className={`${inter.variable} ${bebasNeue.variable}`}>
             <body>
                 <MantineProvider defaultColorScheme="light">
                     <Providers>
