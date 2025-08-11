@@ -5,6 +5,7 @@ import "@mantine/core/styles.css";
 import "@/css/general.css";
 import "@/css/embla.css";
 import Providers from "./providers";
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: "Web Next",
@@ -27,6 +28,25 @@ const inter = Inter({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className={`${inter.variable} ${bebasNeue.variable}`}>
+            <head>
+                {/* GA4 */}
+                <Script
+                    id="ga4-src"
+                    src={`https://www.googletagmanager.com/gtag/js?id=G-DR5F99C2WF}`}
+                    strategy="afterInteractive"
+                />
+                <Script id="ga4-init" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-DR5F99C2WF', {
+                            page_path: window.location.pathname + window.location.search,
+                            page_title: document.title
+                        });
+                    `}
+                </Script>
+            </head>
             <body>
                 <MantineProvider defaultColorScheme="light">
                     <Providers>
