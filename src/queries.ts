@@ -1,4 +1,4 @@
-import { Profile, ProfileCard, ProfileQuote, ProfileSearchResult, ProfilesList } from '@/types';
+import { Profile, ProfileCard, ProfileQuote, ProfileSearchResult, ProfilesList, NewsHeadline, NewsItem } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 console.log(API_URL);
@@ -94,3 +94,23 @@ export const search = async ({ queryKey }: { queryKey: [string, { w: string }] }
 
     return response.json();
 };
+
+export async function fetchHeadlines(limit = 8): Promise<NewsHeadline[]> {
+    const res = await fetch(`${API_URL}/news/headlines?limit=${limit}`, {
+        next: { revalidate: 600 },
+        headers: { Accept: "application/json" },
+    });
+    if (!res.ok) return [];
+    const json = await res.json();
+    return Array.isArray(json) ? json : Array.isArray(json.data) ? json.data : [];
+}
+
+export async function fetchArticle(slug: string): Promise<NewsItem | null> {
+    const res = await fetch(`${API_URL}/news/${encodeURIComponent(slug)}`, {
+        next: { revalidate: 300 },
+        headers: { Accept: "application/json" },
+    });
+    if (!res.ok) return null;
+    const json = await res.json();
+    return json?.data ?? null;
+}

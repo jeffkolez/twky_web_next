@@ -1,0 +1,64 @@
+
+.wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #111;
+    display: block;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* adjusts with container width */
+    object-fit: cover;
+    transition: transform 200ms ease;
+}
+
+.wrapper:hover .image {
+    transform: scale(1.02);
+}
+
+.badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #c62828; /* red-ish */
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    padding: 8px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.gradient {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 55%;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 45%, rgba(0,0,0,0.9) 100%);
+    pointer-events: none;
+}
+
+.title {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 14px;
+    color: #fff;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 1.1;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.cardInner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px; /* space below image overlay for any extras you want later */
+}

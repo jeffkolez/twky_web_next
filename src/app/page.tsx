@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Space } from "@mantine/core";
 import Header from "@/components/Header/Header";
 import SignificantDatesModule from "@/components/SignificantDates/SignificantDatesModule";
+import NewsModule from "@/components/News/NewsModule";
 import Quote from "@/components/Quote/Quote";
 import Footer from "@/components/Footer/Footer";
 import IndexList from "@/components/Profiles/IndexList";
@@ -36,6 +37,7 @@ export default function HomePage() {
         <>
             <Header />
             <EzoicAd />
+            <NewsModule title="Latest News" />
             <SignificantDatesModule title="This Day In History" />
             <IndexList />
             <EmailListSignup />

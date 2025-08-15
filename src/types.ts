@@ -46,6 +46,19 @@ export type JsonLdSchema = {
   image: string[];
 };
 
+type Category = { id: number; name: string; slug: string };
+type MediaItem = { id?: number; url?: string; full_url?: string; order?: number };
+
+export type NewsHeadlineSchema = {
+    id: number;
+    title: string;
+    slug: string;
+    featured_photo?: string | null;
+    featured_photo_url?: string | null;
+    published_at: string;
+    category?: Category | null;
+    media?: MediaItem[];
+};
 
 export type Profile = Omit<ProfileFields, 'quote'> & {
   markup?: JsonLdSchema;
@@ -60,3 +73,26 @@ export type ProfileQuote = Pick<ProfileFields, 'id' | 'date' | 'name' | 'nicknam
 export type ProfileSearchResult = Pick<ProfileFields, 'id' | 'name' | 'nickname' | 'media' | 'type' | 'shortUrl'>;
 
 export type ProfilesList = Pick<ProfileFields, 'id' | 'name' | 'shortUrl' | 'date' | 'nickname' | 'victims' | 'birth' | 'death' | 'nationality'>;
+
+export type NewsHeadline = Pick<NewsHeadlineSchema, 'id' | 'title' | 'slug' | 'featured_photo' | 'featured_photo_url' | 'published_at' | 'category' | 'media'>;
+
+export type NewsItem = {
+    id: number;
+    title: string;
+    slug: string;
+    article: string; // HTML from CKEditor
+    featured_photo_url?: string | null;
+    published_at: string;
+    category?: Category | null;
+    media?: MediaItem[];
+};
+
+export type Headline = {
+    id: number;
+    title: string;
+    slug: string;
+    featured_photo_url?: string | null;
+    published_at: string;
+    category?: Category | null;
+    media?: MediaItem[];
+};

@@ -1,0 +1,92 @@
+.hero {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #111;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.75) 100%);
+    pointer-events: none;
+}
+
+.badge {
+    align-self: flex-start;
+    background: #c62828;
+    color: #fff;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.title {
+    color: #fff;
+    font-weight: 900;
+    font-size: clamp(24px, 3.2vw, 42px);
+    line-height: 1.1;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.meta {
+    color: rgba(255,255,255,0.9);
+    margin: 6px 0 0 0;
+    font-size: 14px;
+}
+
+.body {
+    margin-top: 20px;
+}
+
+.content {
+    color: var(--mantine-color-text);
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.content h2,
+.content h3 {
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+.content p {
+    margin: 0 0 1em 0;
+}
+
+.recentItem {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.recentThumb {
+    width: 112px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #222;
+}
+
+.recentText {
+    display: flex;
+    flex-direction: column;
+}
