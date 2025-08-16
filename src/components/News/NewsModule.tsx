@@ -38,18 +38,8 @@ function Cards({ data }: { data: NewsCardData[] }) {
             {showMore && (
                 <Box>
                     <Link href="/news" style={{ textDecoration: "none" }}>
-                        <Box
-                            style={{
-                                height: "100%",
-                                minHeight: 140,
-                                border: "1px dashed var(--mantine-color-gray-4)",
-                                borderRadius: 12,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                            }}
-                        >
-                            <Text fw={600}>More</Text>
+                        <Box className={classes.moreBox}>
+                            <Text className={classes.moreText}>More</Text>
                         </Box>
                     </Link>
                 </Box>
