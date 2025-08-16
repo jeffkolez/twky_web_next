@@ -139,3 +139,5 @@ server {
 # FORGE CONFIG (DO NOT REMOVE!)
 include forge-conf/test.theywillkillyou.com/after/*;
 ```
+
+Build Sitemap: `npx ts-node generate-sitemap.ts`
