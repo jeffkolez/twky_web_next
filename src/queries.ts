@@ -1,4 +1,4 @@
-import { Profile, ProfileCard, ProfileQuote, ProfileSearchResult, ProfilesList, NewsHeadline, NewsItem } from '@/types';
+import { Profile, ProfileCard, ProfileQuote, ProfileSearchResult, ProfilesList, NewsHeadline, NewsItem, NewsIndex } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 console.log(API_URL);
@@ -113,4 +113,23 @@ export async function fetchArticle(slug: string): Promise<NewsItem | null> {
     if (!res.ok) return null;
     const json = await res.json();
     return json?.data ?? null;
+}
+
+export async function fetchNewsPage(page: number, perPage: number): Promise<NewsIndex> {
+    const url = new URL(`${API_URL}/news`);
+    url.searchParams.set("per_page", String(perPage));
+    url.searchParams.set("page", String(page));
+
+    const res = await fetch(url.toString(), {
+        headers: { Accept: "application/json" },
+        next: { revalidate: 300 },
+    });
+
+    if (!res.ok) {
+        return {
+            data: [],
+            meta: { current_page: page, per_page: perPage, total: 0, last_page: 0 },
+        };
+    }
+    return res.json();
 }

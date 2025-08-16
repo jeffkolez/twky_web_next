@@ -96,3 +96,13 @@ export type Headline = {
     category?: Category | null;
     media?: MediaItem[];
 };
+
+export type NewsIndex = {
+    data: NewsHeadline[];
+    meta: {
+        current_page: number;
+        per_page: number;
+        total: number;
+        last_page: number;
+    };
+};
