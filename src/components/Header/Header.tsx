@@ -26,7 +26,6 @@ export default function Header() {
             <div className={classes.inner}>
                 <div className={classes.topRow}>
                     <Link href="/" className={classes.logo}>
-                        {/* <Image src="/twky-logo-long-white-for-blog.png" alt="They Will Kill You Logo" width={364} height={100} /> */}
                         <Image src="/twky-logo-long-white-for-blog.png" alt="They Will Kill You Logo" width={291} height={80} />
                     </Link>
                     <Burger
