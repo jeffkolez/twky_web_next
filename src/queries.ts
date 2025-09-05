@@ -1,7 +1,7 @@
 import { Profile, ProfileCard, ProfileQuote, ProfileSearchResult, ProfilesList, NewsHeadline, NewsItem, NewsIndex } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-console.log(API_URL);
+const CACHE_TIME = 60;
 
 export const getHighlights = async (): Promise<ProfileCard[]> => {
     const response = await fetch(`${API_URL}/profiles/highlights`);
@@ -95,19 +95,27 @@ export const search = async ({ queryKey }: { queryKey: [string, { w: string }] }
     return response.json();
 };
 
-export async function fetchHeadlines(limit = 8): Promise<NewsHeadline[]> {
-    const res = await fetch(`${API_URL}/news/headlines?limit=${limit}`, {
-        next: { revalidate: 600 },
+export async function fetchHeadlines(
+    limit = 8,
+    newsID?: string
+): Promise<NewsHeadline[]> {
+    const params = new URLSearchParams({ limit: String(limit) });
+    if (newsID) params.set("newsId", newsID);
+
+    const res = await fetch(`${API_URL}/news/headlines?${params.toString()}`, {
+        next: { revalidate: CACHE_TIME },
         headers: { Accept: "application/json" },
     });
+
     if (!res.ok) return [];
+    
     const json = await res.json();
     return Array.isArray(json) ? json : Array.isArray(json.data) ? json.data : [];
 }
 
 export async function fetchArticle(slug: string): Promise<NewsItem | null> {
     const res = await fetch(`${API_URL}/news/${encodeURIComponent(slug)}`, {
-        next: { revalidate: 300 },
+        next: { revalidate: CACHE_TIME },
         headers: { Accept: "application/json" },
     });
     if (!res.ok) return null;
@@ -122,7 +130,7 @@ export async function fetchNewsPage(page: number, perPage: number): Promise<News
 
     const res = await fetch(url.toString(), {
         headers: { Accept: "application/json" },
-        next: { revalidate: 300 },
+        next: { revalidate: CACHE_TIME },
     });
 
     if (!res.ok) {

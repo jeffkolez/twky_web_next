@@ -13,7 +13,7 @@ export default function Footer() {
         <footer className={classes.footer}>
         <Container size="xl" className={classes.inner}>
             <Link href="/">
-            <Image src="/logo.svg" alt="They Will Kill You Logo" width={306} height={47} />
+                <Image src="/twky-logo-long-white-for-blog.png" alt="They Will Kill You Logo" width={291} height={80} />
             </Link>
 
             <Flex direction="column" align="center" mt="md">

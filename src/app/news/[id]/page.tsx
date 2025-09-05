@@ -31,7 +31,7 @@ export default async function Page(
 
     if (!item) notFound();
 
-    const recent = await fetchHeadlines(6);
+    const recent = await fetchHeadlines(6, id);
 
     return (
         <>

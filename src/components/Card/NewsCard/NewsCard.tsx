@@ -38,7 +38,7 @@ export default function NewsCard({ item }: { item: NewsHeadline }) {
                     alt={item.title}
                     className={classes.image}
                     style={{
-                        width: "390px",
+                        width: "420px",
                         height: '320px',
                         objectFit: "cover",
                         borderRadius: 8,
