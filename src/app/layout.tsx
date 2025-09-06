@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {/* GA4 */}
                 <Script
                     id="ga4-src"
-                    src={`https://www.googletagmanager.com/gtag/js?id=G-DR5F99C2WF}`}
+                    src={`https://www.googletagmanager.com/gtag/js?id=G-DR5F99C2WF`}
                     strategy="afterInteractive"
                 />
                 <Script id="ga4-init" strategy="afterInteractive">
