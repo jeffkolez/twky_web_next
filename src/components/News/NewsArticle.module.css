@@ -3,12 +3,13 @@
     border-radius: 12px;
     overflow: hidden;
     background: #111;
+    aspect-ratio: 1.3125;
 }
 
 .image {
     display: block;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1.3125;
     object-fit: cover;
 }
 
@@ -80,7 +81,7 @@
 
 .recentThumb {
     width: 112px;
-    height: 72px;
+    aspect-ratio: 1.3125;
     object-fit: cover;
     border-radius: 8px;
     background: #222;

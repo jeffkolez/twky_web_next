@@ -9,7 +9,6 @@ export default function NewsCard({ item }: { item: NewsHeadline }) {
         item.media?.[0]?.full_url ??
         null;
 
-    // If you sometimes don’t have an image, bail to a simple text card
     if (!img) {
         return (
             <Link href={`/news/${item.slug}`} style={{ textDecoration: "none" }}>
