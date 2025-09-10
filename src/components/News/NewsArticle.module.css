@@ -130,3 +130,17 @@ p.content, span.content {
 .content p[style*="text-align:center"] {
     text-align: center;
 }
+
+.content figure.video {
+    margin: 2rem auto;
+    text-align: center;
+    max-width: 100%; /* don’t overflow article body */
+}
+
+.content figure.video video {
+    display: block;
+    max-width: 100%;  /* shrink to container width */
+    height: auto;     /* keep aspect ratio */
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
