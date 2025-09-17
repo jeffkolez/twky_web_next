@@ -141,3 +141,5 @@ include forge-conf/test.theywillkillyou.com/after/*;
 ```
 
 Build Sitemap: `npx ts-node generate-sitemap.ts`
+
+[![Laravel Forge Site Deployment Status](https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2F74afdcb0-1173-4c08-b799-0d98a3c17ab4&style=plastic)](https://forge.laravel.com/servers/702520/sites/2412662)
