@@ -107,19 +107,12 @@ p.content, span.content {
 
 .content figure {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    display: block;
     margin: 2rem auto;
     text-align: center;
     max-width: 100%;
 }
 
 .content figure img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
     display: block;
     margin: 0 auto;
     border-radius: 4px;
@@ -136,22 +129,21 @@ p.content, span.content {
     text-align: center;
 }
 
+/* --- FIXED MEDIA RULES --- */
 .content :where(video, iframe, embed, object) {
     display: block;
-    width: 100% !important;
-    max-width: 100%;
+    width: auto !important;             /* allow shrinking */
+    max-width: min(100%, 800px);        /* don’t exceed body column */
     height: auto !important;
+    max-height: 70vh;                   /* prevents portrait videos from towering */
+    margin: 2rem auto;
     border-radius: 6px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.06);
-    margin: 2rem auto;
+    background: #000;
+    object-fit: contain;
 }
 
-.content figure.video,
-.content :where(video, iframe, embed, object) {
-    max-width: 800px;
-    margin-inline: auto;
-}
-
+/* YouTube and CKEditor embeds stay 16:9 */
 .content .ck-media__wrapper,
 .content iframe[src*="youtube.com"],
 .content iframe[src*="youtu.be"] {
@@ -164,6 +156,10 @@ p.content, span.content {
     box-shadow: 0 4px 8px rgba(0,0,0,0.06);
 }
 
+.content .ck-media__wrapper {
+    position: relative;
+}
+
 .content .ck-media__wrapper iframe {
     position: absolute;
     inset: 0;
@@ -171,5 +167,3 @@ p.content, span.content {
     height: 100% !important;
     border: 0;
 }
-
-.content .ck-media__wrapper { position: relative; }
