@@ -1,17 +1,20 @@
 "use client";
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function GA4Listener() {
     const pathname = usePathname();
-    const search = useSearchParams();
 
     useEffect(() => {
         if (typeof window === "undefined") return;
-        const url = pathname + (search?.toString() ? `?${search.toString()}` : "");
+        const search = window.location.search || "";
+        const url = pathname + search;
         // @ts-expect-error gtag is injected by GA4 script
-        window.gtag?.("config", "G-DR5F99C2WF", { page_path: url, page_title: document.title });
-    }, [pathname, search]);
+        window.gtag?.("config", "G-DR5F99C2WF", {
+            page_path: url,
+            page_title: document.title,
+        });
+    }, [pathname]);
 
     return null;
 }
