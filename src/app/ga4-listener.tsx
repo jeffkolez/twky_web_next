@@ -9,7 +9,7 @@ export default function GA4Listener() {
     useEffect(() => {
         if (typeof window === "undefined") return;
         const url = pathname + (search?.toString() ? `?${search.toString()}` : "");
-        // @ts-expect-error
+        // @ts-expect-error gtag is injected by GA4 script
         window.gtag?.("config", "G-DR5F99C2WF", { page_path: url, page_title: document.title });
     }, [pathname, search]);
 
