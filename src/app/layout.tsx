@@ -6,7 +6,6 @@ import "@/css/general.css";
 import "@/css/embla.css";
 import Providers from "./providers";
 import Script from 'next/script';
-import GA4Listener from "./ga4-listener";
 
 export const metadata: Metadata = {
   title: "Web Next",
@@ -47,7 +46,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 />
             </head>
             <body>
-                <GA4Listener />
                 <MantineProvider defaultColorScheme="light">
                     <Providers>
                         {children}
