@@ -4,6 +4,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import NewsArticle from "@/components/News/NewsArticle";
 import { fetchArticle, fetchHeadlines } from "@/queries";
+import EzoicAd from "@/components/Ads/EzoicAd";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
@@ -36,6 +37,7 @@ export default async function Page(
     return (
         <>
             <Header />
+            <EzoicAd />
             <NewsArticle item={item} recent={recent} />
             <Space h="xl" />
             <Footer />

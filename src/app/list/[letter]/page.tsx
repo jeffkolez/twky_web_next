@@ -5,6 +5,7 @@ import Footer from "@/components/Footer/Footer";
 import ListProfiles from "@/components/Profiles/ListProfiles";
 import { getAll } from "@/queries";
 import IndexList from "@/components/Profiles/IndexList";
+import EzoicAd from "@/components/Ads/EzoicAd";
 
 // For output:'export' you must declare the finite set of params.
 export function generateStaticParams(): Array<{ letter: string }> {
@@ -35,6 +36,7 @@ export default async function Page(
     return (
         <>
             <Header />
+            <EzoicAd />
             <IndexList />
             <ListProfiles isLoading={false} data={data} />
             <IndexList />

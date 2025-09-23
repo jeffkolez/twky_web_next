@@ -4,6 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import NewsArchive from "@/components/News/NewsArchive";
 import { fetchNewsPage } from "@/queries";
 import type { Metadata } from "next";
+import EzoicAd from "@/components/Ads/EzoicAd";
 
 type SearchParams = { [key: string]: string | string[] | undefined };
 
@@ -53,6 +54,7 @@ export default async function Page(
     return (
         <>
             <Header />
+            <EzoicAd />
             <Container size="xl" mt="xl" mb="xl">
                 <Text fw={800} fz={28} mb="md">
                     News

@@ -9,6 +9,7 @@ import ProfileContent from '@/components/ProfileContent/ProfileContent';
 import { JsonLdSchema } from '@/types';
 import { notFound } from 'next/navigation';
 import { Space } from '@mantine/core';
+import EzoicAd from "@/components/Ads/EzoicAd";
 
 export async function generateMetadata(
     props: RouteProps<{ id: string }>
@@ -70,6 +71,7 @@ export default async function ProfileRoute(
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
             <Header />
+            <EzoicAd />
             <ProfileSummary data={data} isLoading={false} />
             <ProfileContent data={data} />
             <Related title="Related Profiles" shortUrl={data.shortUrl || ''} />
