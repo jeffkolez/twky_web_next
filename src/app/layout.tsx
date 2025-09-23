@@ -32,18 +32,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-                <Script id="ezoic-init" strategy="beforeInteractive">
-                    {`
-                        window.ezstandalone = window.ezstandalone || {};
-                        ezstandalone.cmd = ezstandalone.cmd || [];
-                    `}
-                </Script>
-                <Script
-                    id="ezoic-sa"
-                    src="//www.ezojs.com/ezoic/sa.min.js"
-                    strategy="afterInteractive"
-                    async
-                />
+
+                <script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>
+                <script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>
+
+                <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+                <script>
+                    window.ezstandalone = window.ezstandalone || {};
+                    ezstandalone.cmd = ezstandalone.cmd || [];
+                </script>
+
             </head>
             <body>
                 <MantineProvider defaultColorScheme="light">
