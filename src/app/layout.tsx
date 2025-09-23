@@ -6,6 +6,7 @@ import "@/css/general.css";
 import "@/css/embla.css";
 import Providers from "./providers";
 import Script from 'next/script';
+import GA4Listener from "./ga4-listener";
 
 export const metadata: Metadata = {
   title: "Web Next",
@@ -29,40 +30,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en" className={`${inter.variable} ${bebasNeue.variable}`}>
             <head>
-                {/* GA4 */}
-                <Script
-                    id="ga4-src"
-                    src={`https://www.googletagmanager.com/gtag/js?id=G-DR5F99C2WF`}
-                    strategy="afterInteractive"
-                />
-                <Script id="ga4-init" strategy="afterInteractive">
-                    {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'G-DR5F99C2WF', {
-                            page_path: window.location.pathname + window.location.search,
-                            page_title: document.title
-                        });
-                    `}
-                </Script>
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+                <Script id="ezoic-init" strategy="beforeInteractive">
+                    {`
+                        window.ezstandalone = window.ezstandalone || {};
+                        ezstandalone.cmd = ezstandalone.cmd || [];
+                    `}
+                </Script>
                 <Script
                     id="ezoic-sa"
                     src="//www.ezojs.com/ezoic/sa.min.js"
                     strategy="afterInteractive"
                     async
                 />
-                <Script id="ezoic-init" strategy="beforeInteractive">
-                    {`
-                    window.ezstandalone = window.ezstandalone || {};
-                    ezstandalone.cmd = ezstandalone.cmd || [];
-                    `}
-                </Script>
             </head>
             <body>
+                <GA4Listener />
                 <MantineProvider defaultColorScheme="light">
                     <Providers>
                         {children}
