@@ -35,14 +35,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
                 <GA4Listener/>
 
-                <Script
-                    id="cmp-core"
-                    src="https://the.gatekeeperconsent.com/cmp.min.js"
-                    strategy="beforeInteractive"
-                    data-cfasync="false"
-                />
+                <Script id="cmp-min"  src="https://cmp.gatekeeperconsent.com/min.js" strategy="beforeInteractive" />
+                <Script id="cmp-core" src="https://the.gatekeeperconsent.com/cmp.min.js" strategy="beforeInteractive" />
 
-                <Script id="ezoic-sa" src="//www.ezojs.com/ezoic/sa.min.js" strategy="afterInteractive" async />
+                <Script id="ezoic-sa" src="//www.ezojs.com/ezoic/sa.min.js" strategy="lazyOnload" async />
                 <Script id="ezoic-init" strategy="beforeInteractive">
                 {`
                     window.ezstandalone = window.ezstandalone || {};
