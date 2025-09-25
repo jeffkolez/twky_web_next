@@ -5,8 +5,8 @@ import "@mantine/core/styles.css";
 import "@/css/general.css";
 import "@/css/embla.css";
 import Providers from "./providers";
-import Script from 'next/script';
 import GA4Listener from "./ga4-listener";
+import EzoicSetup from "./ezoic-setup";
 
 export const metadata: Metadata = {
   title: "Web Next",
@@ -34,19 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
                 <GA4Listener/>
-
-                <Script id="cmp-min"  src="https://cmp.gatekeeperconsent.com/min.js" strategy="beforeInteractive" />
-                <Script id="cmp-core" src="https://the.gatekeeperconsent.com/cmp.min.js" strategy="beforeInteractive" />
-
-                <Script id="ezoic-sa" src="//www.ezojs.com/ezoic/sa.min.js" strategy="lazyOnload" async />
-                <Script id="ezoic-init" strategy="beforeInteractive">
-                {`
-                    window.ezstandalone = window.ezstandalone || {};
-                    ezstandalone.cmd = ezstandalone.cmd || [];
-                `}
-                </Script>
-
-
+                <EzoicSetup/>
             </head>
             <body>
                 <MantineProvider defaultColorScheme="light">
