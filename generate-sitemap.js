@@ -35,7 +35,7 @@ const monthDays = [
 ];
 
 function generateDayUrls() {
-    const urls: Array<{ url: string; changefreq: string; priority: number }> = [];
+    const urls = [];
     monthDays.forEach(({ month, days }) => {
         for (let day = 1; day <= days; day++) {
             urls.push({ url: `/date/${month}${day}`, changefreq: "weekly", priority: 0.8 });
@@ -46,19 +46,13 @@ function generateDayUrls() {
 
 const dateUrls = generateDayUrls();
 
-type ProfilesResponse = Array<{ shortUrl: string }>;
 
-type NewsSitemapPage = {
-    data: Array<{ slug: string; lastmod?: string }>;
-    meta: { current_page: number; per_page: number; total: number; last_page: number };
-};
-
-async function fetchAllNewsForSitemap(perPage = 500): Promise<Array<{ slug: string; lastmod?: string }>> {
-    const items: Array<{ slug: string; lastmod?: string }> = [];
+async function fetchAllNewsForSitemap(perPage = 500) {
+    const items = [];
     let page = 1;
 
     while (true) {
-        const { data } = await axios.get<NewsSitemapPage>(`${API_URL}/news/sitemap`, {
+        const { data } = await axios.get(`${API_URL}/news/sitemap`, {
             params: { page, per_page: perPage },
         });
         for (const row of data.data) {
@@ -71,12 +65,12 @@ async function fetchAllNewsForSitemap(perPage = 500): Promise<Array<{ slug: stri
     return items;
 }
 
-async function fetchProfiles(): Promise<ProfilesResponse> {
-    const { data } = await axios.get<ProfilesResponse>(`${API_URL}/profiles`);
+async function fetchProfiles() {
+    const { data } = await axios.get(`${API_URL}/profiles`);
     return data;
 }
 
-async function fetchNewsArchiveMeta(perPage = 20): Promise<{ last_page: number }> {
+async function fetchNewsArchiveMeta(perPage = 20) {
     // Get archive pagination by calling /news with per_page only; we don't need items.
     const { data } = await axios.get(`${API_URL}/news`, { params: { per_page: perPage, page: 1 } });
     return data?.meta ?? { last_page: 1 };
@@ -110,23 +104,21 @@ async function generateSitemap() {
         // News archive pages
         const archiveMeta = await fetchNewsArchiveMeta(20); // match your /news page size
         const archivePages = Array.from({ length: archiveMeta.last_page }, (_, i) => i + 1)
-            .filter((p) => p > 1) // page 1 is /news root already
+            .filter((p) => p > 1)
             .map((p) => ({
                 url: `/news?page=${p}`,
                 changefreq: "hourly",
                 priority: 0.7,
             }));
 
-        // News articles (via lightweight sitemap endpoint)
         const newsItems = await fetchAllNewsForSitemap(500);
         const newsUrls = newsItems.map((n) => ({
             url: `/news/${n.slug}`,
             lastmod: n.lastmod,
-            changefreq: "hourly",
+            changefreq: "daily",
             priority: 0.9,
         }));
 
-        // Write everything
         for (const page of staticPages) sitemapStream.write(page);
         for (const url of dateUrls) sitemapStream.write(url);
         for (const url of profileUrls) sitemapStream.write(url);
@@ -134,7 +126,7 @@ async function generateSitemap() {
         for (const url of newsUrls) sitemapStream.write(url);
 
         sitemapStream.end();
-        await new Promise<void>((resolve, reject) => {
+        await new Promise((resolve, reject) => {
             writableStream.on("finish", () => resolve());
             writableStream.on("error", reject);
         });
